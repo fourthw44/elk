@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:latest
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.6.1
     container_name: elasticsearch
     environment:
       - xpack.security.enabled=false
@@ -25,7 +25,7 @@ services:
 
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:latest
+    image: docker.elastic.co/kibana/kibana:8.6.1
     restart: always
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
@@ -35,7 +35,7 @@ services:
       - elasticsearch
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:latest
+    image: logstash:8.6.1
     container_name: logstash
     restart: always
     volumes:
