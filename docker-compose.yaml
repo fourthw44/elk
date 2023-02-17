@@ -35,7 +35,7 @@ services:
       - elasticsearch
 
   logstash:
-    image: logstash:8.6.2
+    image: docker.elastic.co/logstash/logstash:8.6.2
     container_name: logstash
     restart: always
     volumes:
