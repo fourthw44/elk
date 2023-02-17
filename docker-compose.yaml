@@ -23,10 +23,9 @@ services:
     ports:
       - 9200:9200
 
-  
   kibana:
     container_name: kibana
-    image: docker.elastic.co/kibana/kibana:7.6.2
+    image: docker.elastic.co/kibana/kibana:8.6.2
     restart: always
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
@@ -35,22 +34,19 @@ services:
     depends_on:
       - elasticsearch
 
-
   logstash:
     image: logstash:7.16.2
     container_name: logstash
     restart: always
     volumes:
       - ./logstash/:/logstash_dir
-    command: logstash -f /logstash_dir/pipeline.conf 
+    command: logstash -f /logstash_dir/pipeline.conf
     depends_on:
       - elasticsearch
     ports:
       - '9600:9600'
     environment:
-      LS_JAVA_OPTS: "-Xmx256m -Xms256m"    
-
-    
+      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
 
 volumes:
   elasticsearch-data:
